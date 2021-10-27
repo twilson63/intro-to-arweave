@@ -1,0 +1,14 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - command: npx arlocal
+  - init: npm install
+    command: |
+      export CLIENT_URL="$(gp url 35729)/livereload.js?snipver=1&port=443"
+      npm run dev
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 5000
+    onOpen: open-browser
+  - port: 35729
+    onOpen: ignore
