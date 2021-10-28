@@ -100,6 +100,16 @@ We want to be able to access the wallet address and the sign transactions.
 
 ## Transactions
 
+in `src/main.js`
+
+``` js
+window.arweave = Arweave.init({
+  host: "1984-silver-silkworm-odm72ped.ws-us18.gitpod.io",
+  port: 443,
+  protocol: "https",
+});
+```
+
 Arweave transactions is how we post documents to the `weave`, first we create the 
 transaction, then we sign it using a wallet, and finally we post it.
 
@@ -108,12 +118,6 @@ transaction, then we sign it using a wallet, and finally we post it.
 if (!Arweave) {
   alert("ERROR: Arweave not loaded!");
 }
-
-const arweave = Arweave.init({
-  host: "1984-silver-silkworm-odm72ped.ws-us18.gitpod.io",
-  port: 443,
-  protocol: "https",
-});
 
 const transaction = await arweave.createTransaction({
   data: JSON.stringify({
@@ -163,12 +167,7 @@ pin list
 
 ``` js
 function getTxData(id) {
-  const arweave = Arweave.init({
-    host: "1984-coral-goldfish-eyneffw1.ws-us18.gitpod.io",
-    port: 443,
-    protocol: "https",
-  });
-  return arweave.transactions.getData(id, { decode: true, string: true });
+  return arweave.transactions.getData(id, { decode: true, string: true }).then(JSON.parse);
 }
 
 async function getPins() {
