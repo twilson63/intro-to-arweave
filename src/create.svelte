@@ -1,7 +1,7 @@
 <script>
   import { router } from "tinro";
 
-  let location = {lat: '', lng: ''};
+  let location = { lat: "", lng: "" };
   let note = "I am here!";
 
   navigator.geolocation.getCurrentPosition(success, error);

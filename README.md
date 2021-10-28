@@ -142,9 +142,22 @@ this document will posted to the `/graphql` endpoint and return a graphql respon
 These results can then be transformed into a record set to show on the pins.svelte page.
 
 ``` js
-
+query {
+  transactions(    
+    owners:["qdpklNc-gDIGsjjNME6XrGchibzOffw9UMrC4orV1ZQ"]
+    tags: {
+      name: "App"
+      values: ["8pin"]
+    }
+  ) {
+      edges {
+          node {
+              id
+          }
+      }
+  }
+}
 ```
-
 
 ## arkb
 
