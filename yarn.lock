@@ -111,7 +111,7 @@ arconnect@^0.2.8:
 
 arweave@^1.10.13, arweave@^1.10.18:
   version "1.10.18"
-  resolved "https://registry.npmjs.org/arweave/-/arweave-1.10.18.tgz"
+  resolved "https://registry.yarnpkg.com/arweave/-/arweave-1.10.18.tgz#3042edd1afa52b7c3caeacf88271758232c7b866"
   integrity sha512-i3pKBkLtU1Jl9RtJ9A6zgz8QqF5FZy7YA+qGQ9i2Zug171p29FTDZhN+KlRcVBg8sEgd1DKyecCCYJZ3K6Jdfg==
   dependencies:
     arconnect "^0.2.8"

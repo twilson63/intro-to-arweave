@@ -22,32 +22,12 @@
       alert("ERROR: Arweave not loaded!");
     }
 
-    const arweave = Arweave.init({
-      host: "1984-silver-silkworm-odm72ped.ws-us18.gitpod.io",
-      port: 443,
-      protocol: "https",
-    });
-
-    const transaction = await arweave.createTransaction({
-      data: JSON.stringify({
-        name,
-        note,
-        lat: location.lat,
-        lng: location.lng,
-      }),
-    });
-
-    transaction.addTag("Content-Type", "application/json");
-    transaction.addTag("App", "8pin");
-    transaction.addTag("Type", "pin");
-
-    await arweave.transactions.sign(transaction);
-    const response = await arweave.transactions.post(transaction);
-
+    /*
     if (response.status === 200) {
       e.target.reset();
       router.goto("/");
     }
+    */
   }
 </script>
 

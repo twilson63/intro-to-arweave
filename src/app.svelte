@@ -5,7 +5,7 @@
 
   async function connect() {
     if (arweaveWallet) {
-      await arweaveWallet.connect(["ACCESS_ADDRESS", "SIGN_TRANACTION"], {
+      await arweaveWallet.connect(["ACCESS_ADDRESS", "SIGN_TRANSACTION"], {
         name: "8pin",
       });
     }

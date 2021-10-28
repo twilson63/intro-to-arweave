@@ -141,7 +141,7 @@ this document will posted to the `/graphql` endpoint and return a graphql respon
 
 These results can then be transformed into a record set to show on the pins.svelte page.
 
-``` js
+``` graphql
 query {
   transactions(    
     owners:["qdpklNc-gDIGsjjNME6XrGchibzOffw9UMrC4orV1ZQ"]
@@ -159,16 +159,75 @@ query {
 }
 ```
 
+pin list
+
+``` js
+function getTxData(id) {
+  const arweave = Arweave.init({
+    host: "1984-coral-goldfish-eyneffw1.ws-us18.gitpod.io",
+    port: 443,
+    protocol: "https",
+  });
+  return arweave.transactions.getData(id, { decode: true, string: true });
+}
+
+async function getPins() {
+  const res = await fetch(
+    "https://1984-coral-goldfish-eyneffw1.ws-us18.gitpod.io/graphql",
+    {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        query: `
+          query {
+            transactions {
+              edges {
+                node {
+                    id
+                }
+              }
+            } 
+          }   
+    `,
+      }),
+    }
+  );
+
+  return await res
+    .json()
+    .then(({ data }) => data.transactions.edges.map((n) => n.node.id))
+    .then((txs) => Promise.all(txs.map(getTxData)));
+}
+```
+
+``` svelte
+<section>
+  {#await getPins()}
+    <p>Loading...</p>
+  {:then pins}
+    {#each pins as pin}
+      <aside>
+        <h2>{pin.name}</h2>
+        <p>{pin.note}</p>
+      </aside>
+    {/each}
+  {/await}
+</section>
+```
+
+
 ## arkb
 
 For the final part of this workshop, we will deploy our whole app onto the permaweb, then it will be forever 
 available for users to use.
 
 ``` sh
-# TODO: Generate Wallet
+node create-wallet.js > key.json
 ## Install arkb
 npm install -g arkb
-arkb --gateway localhost:1984 --wallet key.json  d public
+arkb --gateway http://localhost:1984 --wallet key.json deploy public
 ```
 
 ## Summary
