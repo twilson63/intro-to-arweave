@@ -1,109 +1,88 @@
-*Psst — looking for a more complete solution? Check out [SvelteKit](https://kit.svelte.dev), the official framework for building web applications of all sizes, with a beautiful development experience and flexible filesystem-based routing.*
-
-*Looking for a shareable component template instead? You can [use SvelteKit for that as well](https://kit.svelte.dev/docs#packaging) or the older [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+<h1 align="center">Intro to ARWeave and the Permaweb</h1>
+<p align="center">ARWeave is a protocol that allows you to store data permanetly, sustainably, with a single upfront fee</p>
+<p align="center">In this workshop, we will build a simple checkin app called 8pin to explore Arweave developer tools and the ecosystem.</p>
 
 ---
 
-# svelte app
+## Table of Contents
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Setup](#setup)
+- [Arweave-js](#arweave-js)
+- [Wallets](#wallets)
+- [Transactions](#transactions)
+- [GraphQL](#graphql)
+- [arkb](#arkb)
+- [Summary](#summary)
+- [Resources](#resources)
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+---
 
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
+## Introduction
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+Today, we will be building `8pin` a universal checkin application, the application will allow users to create a pin for a few cents. A pin is a document of a time and place with a note and an optional selfie attached, this pin can then be queried by user to show a history of pins documented. 
 
+### What will I learn by attending this workshop?
 
-## Get started
+You will learn how to use some of the development tools of the arweave and permaweb ecosystem.
 
-Install the dependencies...
+### User stories
 
-```bash
-cd svelte-app
-npm install
-```
+Feature: create a pin
 
-...then start [Rollup](https://rollupjs.org):
+As a user     
+I want to create a pin    
+This pin should contain my location identified by my device      
+And the pin should contain a public identifier of myself     
+And the pin should contain a timestamp of the documentation
+And the pin should contain a note    
+And optionally the pin could contain a picture
+And it is important to note that a pin is permanent it can not be deleted or edited.
 
-```bash
-npm run dev
-```
+Feature: list pins by user
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+As a user
+I want to view a list of pins       
+created by myself
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+### Technical Stack (Web3)
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
+* Web (Svelte)
+* Arweave (Storage)
 
-## Building and running in production mode
+Web3 is a movement to build software applications that are fully decentrailized and distributed in a network of machines providing reliability, sustainability and availability. Arweave is a protocol and network that allows users to store data in a pay once and store forever model. This model is based on a sustainable endowment mechanism ensuring the data is stored in  perpetuity. The permaweb is a global, permanent web of pages and applications that live forever. We will be using these technologies to build our application.
 
-To create an optimised version of the app:
+## Prerequisites
 
-```bash
-npm run build
-```
+### What do I need to know in order to take this workshop?
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+* Javascript
+* Git/Github Account
+* html/css - a little Svelte 
+* JSON/fetch 
+* NodeJS/npm
 
+## Setup
 
-## Single-page app mode
+To save time in setting up a project and to make sure everyone is on the same page, we are going to use gitpod as our virtual machine development environment. If you can use a code editor like VS Code, you can use gitpod. It does require a github account to use the free version.
 
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
+<a href="https://gitpod.io#https://github.com/twilson63/intro-to-arweave" target="new">Open in Gitpod</a>
 
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+Already setup is a Svelte project and a local server that emulates the Arweave protocol called arLocal. We will be using arLocal to build our application in a free dev environment. The project will have also downloaded the `arweave-js` for using in our svelte application. For our styles, we will use `mvp.css` to keep the design clean and simple. Finally, we will use `tinro` for our routing library.
 
-```js
-"start": "sirv public --single"
-```
+The svelte ux is already setup, although it can be radically improved, we have two routes, `/create` create a pin, and `/pins` list pins. 
 
-## Using TypeScript
+## Arweave-js
 
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+## Wallets
 
-```bash
-node scripts/setupTypeScript.js
-```
+## Transactions
 
-Or remove the script via:
+## GraphQL
 
-```bash
-rm scripts/setupTypeScript.js
-```
+## arkb
 
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
+## Summary
 
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+## Resources
